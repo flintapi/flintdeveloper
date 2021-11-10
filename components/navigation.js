@@ -10,18 +10,31 @@ import {
 import { Menu } from "antd";
 import { Link, LinkIcon } from "evergreen-ui";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Nav() {
   const router = useRouter();
+  const { pathname, asPath } = router;
+  console.log(pathname, asPath, "Paths");
+  const [path, setPath] = useState(
+    asPath.substring(asPath.lastIndexOf("/") + 1)
+  );
+
+  console.log("Path clipper", path);
 
   return (
     <Menu
       onSelect={({ item, key, keyPath }) => {
         console.log(item, key, keyPath);
-        router.push("/dashboard/" + key);
+        setPath(key);
+        key !== "dashboard"
+          ? router.push("/dashboard/" + key)
+          : router.push("/dashboard/");
       }}
       mode="vertical"
       theme="dark"
+      defaultSelectedKeys={[path]}
+      // selectedKeys={[path]}
       style={{
         height: "auto",
         // backgroundColor: "transparent",

@@ -17,6 +17,10 @@ export default function Signup() {
           content="FlintAPI. Signup and enjoy our awesome easy to use NFT Rest API"
         />
         <link rel="icon" href="/ico.png" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0,  user-scalable=no, maximum-scale=1"
+          />
       </Head>
       <Layout
         style={{
