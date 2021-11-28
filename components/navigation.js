@@ -14,11 +14,14 @@ import { useState } from "react";
 
 export default function Nav() {
   const router = useRouter();
-  const { pathname, asPath } = router;
-  console.log(pathname, asPath, "Paths");
-  const [path, setPath] = useState(
-    asPath.substring(asPath.lastIndexOf("/") + 1)
-  );
+  const { pathname, asPath, query } = router;
+  console.log(pathname, asPath, "Paths", query);
+  var initKey = query
+    ? asPath.includes("projects")
+      ? "projects"
+      : asPath.substring(asPath.lastIndexOf("/") + 1)
+    : asPath.substring(asPath.lastIndexOf("/") + 1);
+  const [path, setPath] = useState(initKey);
 
   console.log("Path clipper", path);
 
@@ -26,6 +29,7 @@ export default function Nav() {
     <Menu
       onSelect={({ item, key, keyPath }) => {
         console.log(item, key, keyPath);
+        if (key === "outlink1" || key === "outlink2") return;
         setPath(key);
         key !== "dashboard"
           ? router.push("/dashboard/" + key)
@@ -46,17 +50,17 @@ export default function Nav() {
       <Menu.Item key="projects" icon={<DashboardOutlined />}>
         PROJECTS
       </Menu.Item>
+      <Menu.Item key="wallet" icon={<WalletOutlined />}>
+        WALLET
+      </Menu.Item>
       <Menu.Item key="debug" icon={<BugOutlined />}>
         DEBUG
       </Menu.Item>
       <Menu.Item key="dev_tools" icon={<ToolOutlined />}>
         DEV TOOLS
       </Menu.Item>
-      <Menu.Item key="wallet" icon={<WalletOutlined />}>
-        WALLET
-      </Menu.Item>
       <Menu.Item key="outlink1" icon={<FileOutlined />}>
-        <Link href="#">DOCS</Link>
+        <Link href="https://www.flintapi.io/docs">DOCS</Link>
         <LinkIcon marginLeft={20} marginTop={12} float="right" />
       </Menu.Item>
       <Menu.Item key="outlink2" icon={<IdcardOutlined />}>

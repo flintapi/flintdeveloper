@@ -1,11 +1,48 @@
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { Card, Col, Input, List, message, Row, Select, Statistic } from "antd";
+import {
+  Card,
+  Col,
+  Input,
+  List,
+  message,
+  Row,
+  Select,
+  Statistic,
+  Table,
+} from "antd";
 import { Button, Heading, Link, Pane, Text } from "evergreen-ui";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { withLayout } from "../../components/layout";
 
 const { Option } = Select;
+const columns = [
+  {
+    title: "Project Status",
+    dataIndex: "project_status",
+    key: "project_status",
+  },
+  {
+    title: "Credit Usage",
+    dataIndex: "credit_usage",
+    key: "credit_usage",
+  },
+  {
+    title: "Last Cycle",
+    dataIndex: "last_cycle",
+    key: "last_cycle",
+  },
+  {
+    title: "Next Cycle",
+    dataIndex: "next_cycle",
+    key: "next_cycle",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+  },
+];
 
 function Projects() {
   const router = useRouter();
@@ -20,7 +57,7 @@ function Projects() {
       )}
 
       {projectId != undefined && (
-        <ProjectHeaderTile name="Miracle" network="BSC" usage="" plan="FREE" />
+        <ProjectDetails name="Miracle" network="BSC" usage="" plan="FREE" />
       )}
       {action == undefined && projectId == undefined && (
         <Row gutter={[16, 16]} style={{ margin: 0, padding: 0, width: "100%" }}>
@@ -115,26 +152,31 @@ const ProjectInfoTile = ({ name, network, usage, plan }) => (
   </Card>
 );
 
-const ProjectHeaderTile = ({ name, network, usage, plan }) => (
-  <Card hoverable>
-    <Row gutter={[8, 8]} style={{ width: "100%", margin: 0, padding: 0 }}>
-      <Col xs={{ span: 24 }} lg={{ span: 5 }}>
-        <Statistic title="NAME" value={name} />
-      </Col>
-      <Col xs={{ span: 24 }} lg={{ span: 5 }}>
-        <Statistic title="NETWORK" value={network} />
-      </Col>
+const ProjectDetails = ({ name, network, usage, plan }) => (
+  <>
+    <Card hoverable style={{ marginBottom: 20 }}>
+      <Row gutter={[8, 8]} style={{ width: "100%", margin: 0, padding: 0 }}>
+        <Col xs={{ span: 24 }} lg={{ span: 5 }}>
+          <Statistic title="NAME" value={name} />
+        </Col>
+        <Col xs={{ span: 24 }} lg={{ span: 5 }}>
+          <Statistic title="NETWORK" value={network} />
+        </Col>
 
-      <Col xs={{ span: 24 }} lg={{ span: 5 }}>
-        <Statistic title="PLAN" value={plan} />
-      </Col>
-      <Col xs={{ span: 24 }} lg={{ span: 4 }}>
-        {/* <Button appearance="primary" allowUnsafeHref={true}> */}
-        <Link href="/dashboard/projects">YOUR PROJECTS</Link>
-        {/* </Button> */}
-      </Col>
-    </Row>
-  </Card>
+        <Col xs={{ span: 24 }} lg={{ span: 5 }}>
+          <Statistic title="PLAN" value={plan} />
+        </Col>
+        <Col xs={{ span: 24 }} lg={{ span: 4 }}>
+          {/* <Button appearance="primary" allowUnsafeHref={true}> */}
+          <Link href="/dashboard/projects">YOUR PROJECTS</Link>
+          {/* </Button> */}
+        </Col>
+      </Row>
+    </Card>
+    <Card>
+      <Table columns={columns} dataSource={[]} loading={true} />
+    </Card>
+  </>
 );
 
 const NewProjectComp = ({ router }) => {
@@ -173,8 +215,13 @@ const NewProjectComp = ({ router }) => {
           value={network}
           onChange={(value) => setNetwork(value)}
         >
-          <Option value="mainnet">Mainnet</Option>
-          <Option value="testnet">Testnet</Option>
+          <Option value="bsc">Binance Smart Chain</Option>
+          <Option value="eth" disabled>
+            Ethereum (Coming soon)
+          </Option>
+          <Option value="sol" disabled>
+            Solana (Coming soon)
+          </Option>
         </Select>
         <br />
         <br />

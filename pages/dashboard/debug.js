@@ -1,7 +1,9 @@
 import { BugOutlined, YoutubeOutlined } from "@ant-design/icons";
-import { Card, Col, Row, Table } from "antd";
+import { Card, Col, Row, Select, Table } from "antd";
 import { Button, Pane, Text } from "evergreen-ui";
 import { withLayout } from "../../components/layout";
+
+const { Option } = Select;
 
 function Debug() {
   const columns = [
@@ -49,7 +51,19 @@ function Debug() {
             alignItems="center"
             justifyContent="start"
           >
-            <Button appearance="primary">TEMPLE RUN</Button>
+            {/* <Button appearance="primary">TEMPLE RUN</Button> */}
+            <Select
+              defaultActiveFirstOption
+              placeholder="Select project"
+              size="large"
+              style={{
+                width: 150,
+              }}
+            >
+              <Option value="temple_run">Temple Run</Option>
+              <Option value="yinka">Yinka</Option>
+              <Option value="game_two">Game Two</Option>
+            </Select>
             <Button marginLeft={20}>REFRESH</Button>
           </Pane>
           <br />
