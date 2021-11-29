@@ -90,9 +90,9 @@ export default function Signup() {
                   }
                 />
                 <Checkbox onChange={(e) => alert(e.target.checked)}>
-                  I accept FLINT's API <Link href="#">Terms of Service</Link>,
-                  and have read {"FLINT's"} <Link href="#">Privacy Policy</Link>
-                  .
+                  I accept {"FLINT's"} API{" "}
+                  <Link href="#">Terms of Service</Link>, and have read{" "}
+                  {"FLINT's"} <Link href="#">Privacy Policy</Link>.
                 </Checkbox>
                 <br />
                 <br />
