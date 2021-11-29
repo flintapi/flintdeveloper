@@ -1,4 +1,4 @@
-import { PlusSquareOutlined } from "@ant-design/icons";
+import { InfoCircleFilled, PlusSquareOutlined } from "@ant-design/icons";
 import {
   Card,
   Col,
@@ -8,6 +8,7 @@ import {
   Row,
   Select,
   Statistic,
+  Steps,
   Table,
 } from "antd";
 import { Button, Heading, Link, Pane, Text } from "evergreen-ui";
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { withLayout } from "../../components/layout";
 
 const { Option } = Select;
+const { Step } = Steps;
 const columns = [
   {
     title: "Project Status",
@@ -183,6 +185,7 @@ const NewProjectComp = ({ router }) => {
   const [projectName, setProjectName] = useState();
   const [network, setNetwork] = useState();
   const [gameType, setGameType] = useState();
+  const [tokenSymbol, setTokenSymbol] = useState();
   return (
     <Row gutter={8} style={{ width: "100%", margin: 0, padding: 0 }}>
       <Col span={6}></Col>
@@ -196,8 +199,9 @@ const NewProjectComp = ({ router }) => {
           backgroundColor: "white",
         }}
       >
+        {/* <Steps progressDot>
+          <Step title="New Project"> */}
         <Heading textAlign="center">SET UP YOUR NEW PROJECT</Heading>
-        <br />
         <br />
         <br />
         <Text>NAME</Text>
@@ -238,6 +242,32 @@ const NewProjectComp = ({ router }) => {
         </Select>
         <br />
         <br />
+        <Text>TOKEN SYMBOL</Text>
+        <Input
+          placeholder="Symbol of the NFT token"
+          value={tokenSymbol?.toUpperCase()}
+          onChange={(e) => setTokenSymbol(e.target.value)}
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Pane paddingX={30} textAlign="center">
+          <Text textAlign="center" size={100}>
+            <InfoCircleFilled />
+            <br /> Creating a project also creates the NFT Smart Contract and
+            your API Key, please do not disclose your API Key to a third party.
+          </Text>
+        </Pane>
+        {/* </Step>
+          <Step title="Setting Up">
+            <Heading>Project is being set up</Heading>
+          </Step>
+          <Step title="All Done">
+            <Heading>Project setup and all done</Heading>
+          </Step>
+        </Steps> */}
+
         <br />
         <br />
         <Pane display="flex" alignItems="center" justifyContent="space-between">

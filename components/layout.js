@@ -27,7 +27,17 @@ function withLayout(Comp) {
             content="width=device-width, initial-scale=1.0,  user-scalable=no, maximum-scale=1"
           />
         </Head>
-        <Header style={{ background: "white", height: "auto", padding: 0 }}>
+        <Header
+          style={{
+            background: "white",
+            height: "auto",
+            padding: 0,
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+          }}
+        >
           <HeaderComp />
         </Header>
         <Layout style={{ height: "calc(100% - 64px)" }}>
@@ -47,7 +57,10 @@ function withLayout(Comp) {
           </Sider>
           <Content
             style={{
+              marginTop: 64,
               padding: 20,
+              minHeight: "calc(100vh - 64px)",
+              overflowY: "scroll",
               marginLeft: collapsed ? 74 : 200,
               transition: "all .15s linear 0s",
             }}
