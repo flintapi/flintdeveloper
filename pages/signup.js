@@ -18,9 +18,9 @@ export default function Signup() {
         />
         <link rel="icon" href="/ico.png" />
         <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0,  user-scalable=no, maximum-scale=1"
-          />
+          name="viewport"
+          content="width=device-width, initial-scale=1.0,  user-scalable=no, maximum-scale=1"
+        />
       </Head>
       <Layout
         style={{
@@ -91,7 +91,8 @@ export default function Signup() {
                 />
                 <Checkbox onChange={(e) => alert(e.target.checked)}>
                   I accept FLINT's API <Link href="#">Terms of Service</Link>,
-                  and have read FLINT's <Link href="#">Privacy Policy</Link>.
+                  and have read {"FLINT's"} <Link href="#">Privacy Policy</Link>
+                  .
                 </Checkbox>
                 <br />
                 <br />
@@ -153,7 +154,8 @@ export default function Signup() {
                   </li>
                   <li>
                     <Text size={600} fontWeight="bold">
-                      Scalable solution that doesn't require blockchain coding
+                      Scalable solution that {"doesn't"} require blockchain
+                      coding
                     </Text>
                   </li>
                   <li>
